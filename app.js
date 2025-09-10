@@ -7,9 +7,17 @@ function adicionarAmigo() {
 
   
   if (nome === "") {
-    alert("Por favor, insira um nome.");
+    alert("Digite um nome válido");
     return;
   }
+
+
+
+  const nomeJaExiste = amigos.some(amigo => amigo.toLowerCase() === nome.toLowerCase());
+if (nomeJaExiste) {
+  alert("Não digite o mesmo nome, caso os nomes sejam iguais, adicione o sobrenome ou um apelido.");
+  return;
+}
 
  
   amigos.push(nome);
@@ -17,14 +25,14 @@ function adicionarAmigo() {
 
   input.value = "";
 
-  // Atualiza a lista na tela
+  
   atualizarLista();
 }
 
-// Função para atualizar a lista de amigos na tela
+
 function atualizarLista() {
   const lista = document.querySelector('#listaAmigos');
-  lista.innerHTML = ""; // Limpa para não duplicar
+  lista.innerHTML = ""; 
 
   for (let i = 0; i < amigos.length; i++) {
     const li = document.createElement('li');
@@ -33,10 +41,10 @@ function atualizarLista() {
   }
 }
 
-// Função para sortear um amigo
+
 function sortearAmigo() {
   if (amigos.length === 0) {
-    alert("Não há amigos para sortear.");
+    alert("Sem amigos para sortear.");
     return;
   }
 
@@ -44,5 +52,5 @@ function sortearAmigo() {
   const amigoSorteado = amigos[indiceSorteado];
 
   const resultado = document.querySelector('#resultado');
-  resultado.innerHTML = `<li>O amigo sorteado foi: <strong>${amigoSorteado}</strong></li>`;
+  resultado.innerHTML = `<li>O sortudo de hoje foi : <strong>${amigoSorteado}</strong></li>`;
 }
